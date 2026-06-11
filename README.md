@@ -17,6 +17,21 @@ An end-to-end computer vision pipeline that automatically detects, reads and sol
 - Pillow — synthetic digit generation for training
 - SciPy — image augmentation
 
+## Model Training
+
+The CNN is trained on:
+- **MNIST** handwritten digits (54,000 samples, digits 1-9)
+- **Synthetic printed digits** (7,200 samples) generated using system fonts to bridge the domain gap between handwritten MNIST and printed Sudoku digits
+
+Training achieves ~99.6% test accuracy on MNIST.
+
+## Results
+
+- MNIST Test Accuracy: 99.6%
+- Synthetic Digit Accuracy: 100%
+- Successfully solved 9/10 printed Sudoku puzzles
+- Average solve time: 74.98 ms
+
 ## Setup
 
 ```bash
@@ -39,13 +54,6 @@ python -m src.train
 python main.py data/sudoku2.jpg
 ```
 
-## Model Training
-
-The CNN is trained on:
-- **MNIST** handwritten digits (54,000 samples, digits 1-9)
-- **Synthetic printed digits** (7,200 samples) generated using system fonts to bridge the domain gap between handwritten MNIST and printed Sudoku digits
-
-Training achieves ~99.6% test accuracy on MNIST.
 
 ## Limitations
 
