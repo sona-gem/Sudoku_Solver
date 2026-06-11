@@ -1,0 +1,9 @@
+opencv-python
+tensorflow      # deep learning and neural networks, NLP 
+numpy
+matplotlib
+scikit-image        # used for image filtering and enhancements, feature detection, segmentation 
+scipy           #solves complex maths => ordinary DEs, integrals , statistics 
+scikit-learn        #used for traditional ml & model evaluation 
+seaborn
+imutils     #helps with image risizeing , rotation, edge detection
