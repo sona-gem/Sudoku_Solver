@@ -158,7 +158,7 @@ def print_confidence_report(board, confidences):
 
     for r in range(9):
         if r % 3 == 0 and r != 0:
-            print("-" * 73)
+            print("-" * 83)
 
         row_str = ""
         for c in range(9):
