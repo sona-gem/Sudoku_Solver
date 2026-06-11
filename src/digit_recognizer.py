@@ -154,11 +154,11 @@ def recognize_board(cells, model):
 
 def print_confidence_report(board, confidences):
     print("\nRecognized Board (digit | confidence):")
-    print("-" * 65)
+    print("-" * 83)
 
     for r in range(9):
         if r % 3 == 0 and r != 0:
-            print("-" * 65)
+            print("-" * 73)
 
         row_str = ""
         for c in range(9):
@@ -169,13 +169,14 @@ def print_confidence_report(board, confidences):
             conf = confidences[r][c]
 
             if d == 0:
-                row_str += "  .      "
+                cell_str = "."
             elif conf < 0.90:
-                row_str += f"  {d}({conf:.2f})* "  # * = low confidence
+                cell_str = f"{d}({conf:.2f})* "  # * = low confidence
             else:
-                row_str += f"  {d}({conf:.2f})  "
+                cell_str = f"{d}({conf:.2f})  "
+            row_str += cell_str.ljust(9)
 
         print(row_str)
 
-    print("-" * 65)
+    print("-" * 83)
     print("* = low confidence cell (possible OCR error)\n")
