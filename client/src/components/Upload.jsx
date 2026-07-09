@@ -42,12 +42,26 @@ export default function Upload({ setResult, setLoading, setError, loading }) {
   };
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-5">
+      <div className="w-full max-w-6xl">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-zinc-400">
+              Input
+            </p>
+            <p className="mt-1 text-lg font-semibold text-white">
+              Upload Sudoku Image
+            </p>
+          </div>
+          <span className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-zinc-200">
+            Ready to scan
+          </span>
+        </div>
+      </div>
+
       {/* Drop zone */}
       <div
-        className="w-full max-w-lg border-2 border-dashed border-gray-300 
-                   rounded-xl p-10 text-center cursor-pointer
-                   hover:border-blue-400 hover:bg-blue-50 transition-colors"
+        className="w-full max-w-2xl cursor-pointer rounded-2xl border border-white/10 bg-white/5 p-8 text-center shadow-[0_14px_40px_rgba(0,0,0,0.45)] transition duration-200 hover:border-white/20 hover:bg-white/8"
         onClick={() => inputRef.current.click()}
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
@@ -56,12 +70,12 @@ export default function Upload({ setResult, setLoading, setError, loading }) {
           <img
             src={preview}
             alt="preview"
-            className="max-h-64 mx-auto rounded-lg object-contain"
+            className="mx-auto max-h-64 rounded-xl object-contain ring-1 ring-white/10"
           />
         ) : (
-          <div className="flex flex-col items-center gap-2 text-gray-400">
+          <div className="flex flex-col items-center gap-2 text-zinc-400">
             <svg
-              className="w-12 h-12"
+              className="h-12 w-12 text-zinc-300"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -75,10 +89,10 @@ export default function Upload({ setResult, setLoading, setError, loading }) {
                        4.5M12 3v13.5"
               />
             </svg>
-            <p className="text-sm font-medium">
+            <p className="text-sm font-medium text-white">
               Drop image here or click to upload
             </p>
-            <p className="text-xs">JPG, PNG supported</p>
+            <p className="text-xs text-zinc-500">JPG, PNG supported</p>
           </div>
         )}
         <input
@@ -94,9 +108,7 @@ export default function Upload({ setResult, setLoading, setError, loading }) {
       <button
         onClick={handleSolve}
         disabled={!file || loading}
-        className="px-8 py-3 bg-blue-600 text-white font-semibold 
-                   rounded-lg hover:bg-blue-700 disabled:opacity-40 
-                   disabled:cursor-not-allowed transition-colors"
+        className="rounded-xl bg-white px-8 py-3 font-semibold text-black shadow-[0_12px_30px_rgba(255,255,255,0.08)] transition hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-40"
       >
         {loading ? "Solving..." : "Solve Puzzle"}
       </button>

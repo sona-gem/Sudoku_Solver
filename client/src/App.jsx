@@ -8,38 +8,42 @@ export default function App() {
   const [error, setError] = useState(null);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black text-zinc-100">
+      <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_34%),linear-gradient(180deg,#121212_0%,#050505_100%)]" />
+
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-2xl font-bold text-gray-900">
+      <header className="border-b border-white/10 bg-black/75 px-6 py-5 backdrop-blur-xl">
+        <div className="mx-auto max-w-6xl">
+          <h1 className="text-2xl font-semibold tracking-tight text-white">
             Sudoku OCR Solver
           </h1>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="mt-1 text-sm text-zinc-400">
             Upload a printed Sudoku puzzle image to solve it instantly
           </p>
         </div>
       </header>
 
       {/* Main */}
-      <main className="max-w-4xl mx-auto px-6 py-10">
-        <Upload
-          setResult={setResult}
-          setLoading={setLoading}
-          setError={setError}
-          loading={loading}
-        />
+      <main className="mx-auto max-w-6xl px-6 py-8">
+        <section className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur">
+          <Upload
+            setResult={setResult}
+            setLoading={setLoading}
+            setError={setError}
+            loading={loading}
+          />
+        </section>
 
         {error && (
-          <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-red-700 text-sm font-medium">❌ {error}</p>
+          <div className="mt-5 rounded-xl border border-rose-500/20 bg-rose-500/10 p-4">
+            <p className="text-sm font-medium text-rose-200">❌ {error}</p>
           </div>
         )}
 
         {loading && (
-          <div className="mt-10 flex flex-col items-center gap-3">
-            <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
-            <p className="text-gray-500 text-sm">
+          <div className="mt-8 flex flex-col items-center gap-3 py-6">
+            <div className="h-10 w-10 animate-spin rounded-full border-4 border-zinc-700 border-t-white" />
+            <p className="text-sm text-zinc-400">
               Detecting grid, recognizing digits, solving...
             </p>
           </div>
@@ -49,7 +53,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="text-center py-6 text-xs text-gray-400">
+      <footer className="py-6 text-center text-xs text-zinc-500">
         Built with OpenCV · TensorFlow · Flask · React
       </footer>
     </div>
