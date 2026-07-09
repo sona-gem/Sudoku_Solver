@@ -3,6 +3,8 @@
 import cv2
 import numpy as np
 
+
+
 #for contour detection
 def preprocess(image):      
     #image => grayscale
@@ -161,10 +163,12 @@ def segment_cells(warped):
 
 
 #main pipeline 
-def detect_grid(image_path):
-    image = cv2.imread(image_path)
+#this function will accept a numpy array directly 
+#this numpy array will be used by flask api which receives images as bytes
+def detect_grid_from_array(image):
+    
     if image is None:
-        raise FileNotFoundError(f"Could not load image: {image_path}")
+        raise ValueError("Image array is None")
     
     image = cv2.resize(image, (900, 900))
     thresh = preprocess(image)
@@ -173,3 +177,4 @@ def detect_grid(image_path):
     cells = segment_cells(warped)
 
     return warped, cells
+
