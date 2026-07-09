@@ -1,8 +1,8 @@
 flask
 flask-cors
 opencv-python-headless
-tensorflow
 numpy
 scipy
 pillow
 gunicorn
+tflite-runtime

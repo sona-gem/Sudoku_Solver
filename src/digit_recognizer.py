@@ -3,12 +3,28 @@
 #takes single cell image => returns (digit, confidence)
 import cv2
 import numpy as np
-from tensorflow.keras.models import load_model
+import tflite_runtime.interpreter as tflite
+#from tensorflow.keras.models import load_model
 
 
-def load_digit_model(model_path="models/sudoku_digit_model.keras"):
-    model = load_model(model_path)
-    return model
+def load_digit_model(model_path="models/sudoku_digit_model.tflite"):
+    interpreter = tflite.Interpreter(model_path=model_path)
+    interpreter.allocate_tensors()
+    print(f"TFLite model loaded: {model_path}")
+    return interpreter
+
+
+def predict_digit(interpreter, canvas):
+    """Run inference using TFLite interpreter."""
+    input_details  = interpreter.get_input_details()
+    output_details = interpreter.get_output_details()
+
+    inp = canvas.reshape(1, 28, 28, 1).astype("float32")
+    interpreter.set_tensor(input_details[0]['index'], inp)
+    interpreter.invoke()
+
+    pred = interpreter.get_tensor(output_details[0]['index'])[0]
+    return pred
 
 #cell is empty if whiet pixel density is less after thresholding
 def is_empty(cell):
@@ -121,8 +137,7 @@ def recognize_digit(cell, model, confidence_threshold=0.80):
 
 
     inp = canvas.reshape(1,28,28,1)
-    pred = model.predict(inp, verbose = 0)[0]
-
+    pred = predict_digit(model, canvas)
     digit = int(np.argmax(pred))
     confidence = float(pred[digit])
 
