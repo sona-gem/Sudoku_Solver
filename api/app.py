@@ -3,6 +3,7 @@
 # Input: image file
 # Output: original board, solved board, overlay image (base64)
 
+import resource
 import os
 import copy
 import time
@@ -28,6 +29,7 @@ CORS(app)  # allow requests from Vercel frontend
 print("Loading model...")
 model = load_digit_model()
 print("Model loaded ✅")
+print(f"Memory after model load: {resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024} MB")
 
 
 @app.route("/", methods=["GET"])
