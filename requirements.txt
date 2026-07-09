@@ -1,5 +1,5 @@
 opencv-python
-tensorflow      # deep learning and neural networks, NLP 
+tensorflow-cpu==2.15.0      # deep learning and neural networks, NLP 
 numpy
 matplotlib
 scikit-image        # used for image filtering and enhancements, feature detection, segmentation 
